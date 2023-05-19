@@ -12,8 +12,9 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: max-content;
-    width: max-content;
+    height: 736px;
+    width: 758px;
+    margin-top: 80px;
 
 }
 
@@ -26,21 +27,21 @@ body{
     justify-content: center;
 
     /*width is calculated using width *  (an individual grids width + border size)*/
-    width: 672px;
+    width: 736px;
 
 }
 
 .grids{
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     background-color:red ;
     color: red;
     border: 1px solid white;
 }
 
 .entered{
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     background-color:green ;
     color: red;
     border: 1px solid white;

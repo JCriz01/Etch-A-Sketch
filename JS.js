@@ -1,57 +1,53 @@
 
+//parent element
 const parentElement=document.getElementsByClassName('container')[0];
 
-const grid=document.createElement('div');
 
-for(let i=0; i < 256; i++){
+//function that will create the hover effect everytime a user hovers over an individual grid
+//with their mouse.
+function Hover(list){
+
+    for(let i=0; i < list.length; i++){
+
+        list[i].addEventListener('mouseenter',()=> {
+            list[i].classList.remove('grids');
+            list[i].classList.add('entered');
+        });
+
+    }
+}
+
+
+
+//main function that will maintain everything, etc.
+function MainFunction(element){
+
+
+    //individual div element
     const grid=document.createElement('div');
-    grid.classList.add('grids');
-    parentElement.appendChild(grid);
 
-
-}
-
-const testing=parentElement.children;
-
-
-
-testing[0].addEventListener('mouseenter',()=>{
-    grid.classList.remove('grids');
-    grid.classList.add('entered');
-    parentElement.appendChild(grid);
-});
-
-testing[0].addEventListener('mouseleave',()=>{
-    grid.classList.remove('entered');
-    grid.classList.add('grids');
-
-    parentElement.appendChild(grid);
-});
-
-
-testing[1].addEventListener('mouseenter',()=>{
-    grid.classList.remove('grids');
-    grid.classList.add('entered');
-    parentElement.appendChild(grid);
-});
-
-testing[1].addEventListener('mouseleave',()=>{
-    grid.classList.remove('entered');
-    grid.classList.add('grids');
-
-    parentElement.appendChild(grid);
-});
-
-for(let i=0; i < testing.length; i++){
-
-    testing[i].addEventListener('mouseenter',()=> {
-        grid.classList.remove('grids');
-        grid.classList.add('entered');
-        parentElement.appendChild(grid);
+    const button=document.createElement('button');
+    button.textContent=`Change grid size?`;
+    parentElement.parentNode.appendChild(button);
+    button.addEventListener('click',()=>{
+        let gridSize=prompt("Enter the length of the new grid(under 100): ");
     });
 
-    testing[i].addEventListener('mouseleave',()=> {
-        grid.classList.remove('entered');
+    //for loop that creates and adds a class to each div
+    for(let i=0; i < 256; i++){
+        const grid=document.createElement('div');
         grid.classList.add('grids');
-    });
+        element.appendChild(grid);//appending to parent element
+
+    }
+
+    //variable that contains a HTMLCollection list for each div that represents a grid.
+    const gridlist=parentElement.children;
+
+    Hover(gridlist);//calling Hover function to create hover effect for the user.
+
 }
+
+MainFunction(parentElement);//calling main function
+
+
