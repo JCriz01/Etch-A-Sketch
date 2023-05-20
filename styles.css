@@ -13,8 +13,8 @@ body{
     justify-content: center;
     align-items: center;
     height: 736px;
-    width: 758px;
-    margin-top: 80px;
+    width: 736px;
+    margin-top: 90px;
 
 }
 
@@ -26,24 +26,19 @@ body{
     align-items: center;
     justify-content: center;
 
-    /*width is calculated using width *  (an individual grids width + border size)*/
-    width: 736px;
 
+    width: 736px;
+    border: 10px solid black;
 }
 
 .grids{
-    width: 44px;
-    height: 44px;
-    background-color:red ;
-    color: red;
+    /*width: 44px;
+    height: 44px;*/
+    background-color:crimson;
     border: 1px solid white;
 }
 
-.entered{
-    width: 44px;
-    height: 44px;
-    background-color:green ;
-    color: red;
-    border: 1px solid white;
+.button-class{
+    margin-top: 15px;
+    border-radius: 5px;
 }
-
