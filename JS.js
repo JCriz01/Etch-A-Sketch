@@ -64,19 +64,14 @@ function MainFunction(element){
 }
 
 function DeleteGrid(list){
-
-    
     //getting the size of the HTMLCollection
     let gridSize=parentElement.children.length;
     console.log(gridSize);
     for(let i=(gridSize-1); i >=0 ;i--){
         parentElement.removeChild(list[i]);
     }
-
-
 }
 
-CreateGrid(16);
 
 //variable that contains a HTMLCollection list for each div that represents a grid.
 let gridlist=parentElement.children;
@@ -104,6 +99,4 @@ button.addEventListener('click',()=>{
     }
 });
 
-
-Hover(gridlist);//calling Hover function to create hover effect for the user.
-
+MainFunction(parentElement);
