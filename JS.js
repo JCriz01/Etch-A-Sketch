@@ -63,6 +63,47 @@ function MainFunction(element){
 
 }
 
-MainFunction(parentElement);//calling main function
+function DeleteGrid(list){
 
+    
+    //getting the size of the HTMLCollection
+    let gridSize=parentElement.children.length;
+    console.log(gridSize);
+    for(let i=(gridSize-1); i >=0 ;i--){
+        parentElement.removeChild(list[i]);
+    }
+
+
+}
+
+CreateGrid(16);
+
+//variable that contains a HTMLCollection list for each div that represents a grid.
+let gridlist=parentElement.children;
+
+
+const button=document.createElement('button');
+button.textContent=`Change grid size?`;
+button.classList.add('button-class');//adding class to button
+parentElement.parentNode.appendChild(button);
+
+button.addEventListener('click',()=>{
+    let size=prompt("Enter the length of the new grid(under 100): ");
+    
+    if(size < 100 && size > 0){
+
+        DeleteGrid(gridlist);
+
+    
+        CreateGrid(size);
+        gridlist=parentElement.children;
+        Hover(gridlist);
+    }
+    else{
+        alert("Error. Invalid entry.");
+    }
+});
+
+
+Hover(gridlist);//calling Hover function to create hover effect for the user.
 
