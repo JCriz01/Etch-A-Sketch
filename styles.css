@@ -2,7 +2,7 @@ html{
     font-family: 'Roboto', sans-serif;
 }
 :root{
-    --background-color: #F2FDFF;
+    --background-color: ##edf2f4;
 }
 
 body{
@@ -25,16 +25,77 @@ body{
 }
 
 .user-options{
+    margin-top: 10%;
     display: flex;
     flex-direction: column;
-    width: 80%;
-    
+    width: 70%;
+    background-color: #CCC9DC;
+    align-items: center;
+    padding-bottom: 20px;
+    justify-content: center;
+
+    border-radius: 6px;
+}
+.user-options > div{
+    background-color: #EE6464;
+    display: flex;
+    width: 100%;
+
+}
+.user-options > button{
+    background-color: #151515;
+    width: 40%;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    padding: 14px 32px;
+    font-size: 16px;
+    margin: 3%;
+    text-align: center;
+    color: white;
+}
+
+.user-options > button:active{
+    transform: scale(1.1);
+    background-color: #974343;
 }
 
 .heading{
     align-self: center;
+    text-align: center;
+    width: 100%;
+
 }
 
+.container{
+    margin-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+
+    /*width is calculated using width *  (an individual grids width + border size)*/
+    min-width: 320px;
+    width: 320px;
+    height: 320px;
+    border: 5px solid black;
+}
+
+.grids{
+    width: 20px;
+    height: 20px;
+    background-color:white ;
+}
+
+.entered{
+    width: 20px;
+    height: 20px;
+    background-color:black ;
+
+}
 
 @media (min-width: 1200px){
 
@@ -42,23 +103,14 @@ body{
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
         min-height: 100%;
         min-width: 100%;
-        margin-top: 80px;
         margin-left: 36px;
         margin-right: 36px;
-        background-color: #EDF2F4;
     }
+
     .container{
 
-        display: flex;
-        flex-wrap: wrap;
-    
-        align-self: center;
-        align-items: center;
-        justify-content: center;
-    
         /*width is calculated using width *  (an individual grids width + border size)*/
         min-width: 416px;
         width: 416px;
@@ -78,33 +130,25 @@ body{
         width: 24px;
         height: 24px;
         background-color:black ;
-        color: red;
         border: 1px solid white;
     }
     
     .ui{
+        
         display: flex;
         width: 100%;
         align-self: center;
-        height: 100%;
+        flex-direction: row;
     }
     
     .user-options{
         display: flex;
         flex-direction: column;
         width: 320px;
-        background-color: #A29C9B;
-    
-        margin-right: 17%;
         align-items: center;
+
+        margin-left: 5%;
+        margin-right: 12%;
     }
-    
-    .heading{
-        text-align: center;
-    }
-    
-    .erase{
-        width: 65%;
-        min-width: 60px;
-    }
+
 }
