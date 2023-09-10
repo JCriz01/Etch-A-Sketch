@@ -2,10 +2,31 @@ const myStyleSheet=document.styleSheets[0];
 
 console.log(myStyleSheet);
 
+//delte this after finding colors
+const colorsArray=['#121420','#ea093e','#00B4D8','#CAF0F8','#471323','#0EAD69'];
 
 //parent element
 const parentElement=document.querySelector('.container');
 let currentColor='#151515';//default black color
+let isErasing=false;
+const colorBar=document.querySelector('.item');
+
+function eraser(){
+    const selectEaserBtn=document.querySelector('.erase');
+
+    selectEaserBtn.addEventListener('click',()=>{
+        if(!isErasing){
+            isErasing=true;
+            selectEaserBtn.style.backgroundColor='green';
+        }
+        else{
+            isErasing=false;
+            selectEaserBtn.style.backgroundColor='black';
+        }
+
+    });
+}
+
 
 function changeCSSDivPropertyColor(currColor){
     for(let i=0; i < myStyleSheet.cssRules.length; i++){
@@ -31,39 +52,75 @@ function createRandomColor(){
         randomBtnElem.style.backgroundColor=randomColor;
         //changeCSSDivPropertyColor(randomColor);
         currentColor=randomColor;
+        colorBar.style.backgroundColor=currentColor;
     });
 }
 
+function changeColor(){
+    //getting button element from dom
+
+    const btnElem=document.querySelector('.change-color');
+
+    //getting the colors display element
+    const colorsElem=document.querySelector('.select-color');
+    btnElem.addEventListener('click',()=>{
+
+        colorsElem.classList.toggle('hide');
+    });
+
+    const container=document.querySelector('.select-color').children;
+    
+    for(let i=0; i < container.length; i ++ ){
+
+        if(i < colorsArray.length){
+            let color=colorsArray[i];
+            container[i].style.backgroundColor=color;
+        }
+    }
+}
+
 function gridEvent(){
+
+    function isEraserActive(targetElem){
+
+        if(targetElem.classList.value==='grids entered' && isErasing){
+            targetElem.classList.remove('entered');
+            targetElem.style.backgroundColor='white';
+            isMouseDown=true;
+        }
+    }
     let isMouseDown=false;
-    let activeDiv=null;
 
     parentElement.addEventListener('mousedown', (Event)=>{
         let target=Event.target;
-        if(target.classList.value==='grids'){
+
+        if(target.classList.value==='grids' && !isErasing){
             isMouseDown=true;
             target.classList.add('entered');
             target.style.backgroundColor=currentColor;
-
-            activeDiv=target;
         }
-    })
+
+        isEraserActive(target);
+    });
 
     parentElement.addEventListener('mousemove',(Event)=>{
         let target=Event.target;
-        if(isMouseDown && activeDiv && target.classList.value==='grids'){
+
+        if(isMouseDown && target.classList.value==='grids' && !isErasing){
             target.classList.add('entered');
             target.style.backgroundColor=currentColor;
-
         }
-    })
+        else if(isMouseDown && target.classList.value==='grids entered' && isErasing){
+            target.classList.remove('entered');
+            target.style.backgroundColor='white'
+        }
+        
+    });
 
     parentElement.addEventListener('mouseup',(Event)=>{
-        let target=Event.target
-        
+        console.log(Event.target);
         isMouseDown=false;
-        activeDiv=null;
-    })
+    });
 
 }
 
@@ -109,18 +166,19 @@ function gridEventsTouchScreen(){
     })
 }
 
-
-
 //main function that will maintain everything, etc.
 function MainFunction(element){
 
+    eraser();
     createRandomColor();
+    changeColor();
 
     //creating grids
     createElements(element);
     const button=document.createElement('button');
     //button.textContent=`Change grid size?`;
     //parentElement.parentNode.appendChild(button);
+
     if(/Mobi/.test(navigator.userAgent))
         gridEventsTouchScreen();
     else
@@ -145,7 +203,5 @@ function DeleteGrid(list){
         parentElement.removeChild(list[i]);
     }
 }
-
-
 
 MainFunction(parentElement);
