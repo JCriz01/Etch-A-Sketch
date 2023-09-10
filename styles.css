@@ -139,7 +139,7 @@ body{
 }
 
 .select-color > button:hover{
-    transform: scale(1.1);
+    transform: scale(1.03);
 }
 
 .select-color > button:active{
@@ -231,8 +231,42 @@ body{
         width: 320px;
         align-items: center;
 
-        margin-left: 5%;
+        margin-left: 4%;
         margin-top: 7%;
     }
 
+    .select-color{
+        width: 35%;
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        
+    }
+
+
+    @keyframes fadeIn{
+        from{
+            width: 10%;
+            opacity: 0;
+            display: none;
+        }
+        55%{
+            width: 20%;
+            opacity: 0.6;
+            display: grid;
+        }
+    
+        65%{
+            opacity: 1;
+            width: 30%;
+        }
+    
+        80%{
+            transform: scale(1.2);
+        }
+    
+        100%{
+            opacity: 1;
+            width: 35%;
+    
+        }
+    }
 }

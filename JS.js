@@ -1,15 +1,15 @@
 const myStyleSheet=document.styleSheets[0];
 
-console.log(myStyleSheet);
-
-//delte this after finding colors
-const colorsArray=['#121420','#ea093e','#00B4D8','#CAF0F8','#471323','#0EAD69'];
+const colorsArray=['#121420','#ea093e','#00B4D8','#F7F052',
+'#CAF0F8','#471323','#0EAD69','#FCAB10','#111D4A','#8F6593'];
 
 //parent element
 const parentElement=document.querySelector('.container');
+
 let currentColor='#151515';//default black color
 let isErasing=false;
 const colorBar=document.querySelector('.item');
+
 
 function eraser(){
     const selectEaserBtn=document.querySelector('.erase');
@@ -24,35 +24,6 @@ function eraser(){
             selectEaserBtn.style.backgroundColor='black';
         }
 
-    });
-}
-
-
-function changeCSSDivPropertyColor(currColor){
-    for(let i=0; i < myStyleSheet.cssRules.length; i++){
-        let rule=myStyleSheet.cssRules[i]
-
-        if(rule.selectorText === '.entered'){
-            rule.style.backgroundColor=currColor;
-        }
-    }
-}
-function createRandomColor(){
-    const randomBtnElem=document.querySelector('.random');
-
-    function randomRGB(){
-        const red=Math.floor(Math.random() * 255)+1;
-        const green=Math.floor(Math.random() * 255)+1;
-        const blue=Math.floor(Math.random() * 255)+1;
-
-        return `rgb(${red},${green},${blue})`;
-    }
-    randomBtnElem.addEventListener('click',()=>{
-        let randomColor=randomRGB()
-        randomBtnElem.style.backgroundColor=randomColor;
-        //changeCSSDivPropertyColor(randomColor);
-        currentColor=randomColor;
-        colorBar.style.backgroundColor=currentColor;
     });
 }
 
@@ -76,7 +47,47 @@ function changeColor(){
             let color=colorsArray[i];
             container[i].style.backgroundColor=color;
         }
+    };
+
+    colorsElem.addEventListener('click',(Event)=>{
+        let target=Event.target;
+
+        if(target.classList.value==='color'){
+           colorBar.style.backgroundColor=currentColor=target.style.backgroundColor;
+        }
+    });
+}
+
+
+function changeCSSDivPropertyColor(currColor){
+    for(let i=0; i < myStyleSheet.cssRules.length; i++){
+        let rule=myStyleSheet.cssRules[i]
+
+        if(rule.selectorText === '.entered'){
+            rule.style.backgroundColor=currColor;
+        }
     }
+}
+
+
+function createRandomColor(){
+    const randomBtnElem=document.querySelector('.random');
+
+    //function to create random rgb values
+    function randomRGB(){
+        const red=Math.floor(Math.random() * 255)+1;
+        const green=Math.floor(Math.random() * 255)+1;
+        const blue=Math.floor(Math.random() * 255)+1;
+
+        return `rgb(${red},${green},${blue})`;
+    }
+    randomBtnElem.addEventListener('click',()=>{
+        let randomColor=randomRGB()
+        randomBtnElem.style.backgroundColor=randomColor;
+        //changeCSSDivPropertyColor(randomColor);
+        currentColor=randomColor;
+        colorBar.style.backgroundColor=currentColor;
+    });
 }
 
 function gridEvent(){
@@ -168,40 +179,26 @@ function gridEventsTouchScreen(){
 
 //main function that will maintain everything, etc.
 function MainFunction(element){
+    createElements(element);
 
     eraser();
     createRandomColor();
     changeColor();
-
     //creating grids
-    createElements(element);
-    const button=document.createElement('button');
-    //button.textContent=`Change grid size?`;
-    //parentElement.parentNode.appendChild(button);
 
     if(/Mobi/.test(navigator.userAgent))
         gridEventsTouchScreen();
     else
         gridEvent();
 
-
-    button.addEventListener('click',()=>{
-        let gridSize=prompt("Enter the length of the new grid(under 100): ");
-    });
-
-    //variable that contains a HTMLCollection list for each div that represents a grid.
-    //const gridlist=parentElement.children;
-
-
 }
 
 function DeleteGrid(list){
     //getting the size of the HTMLCollection
     let gridSize=parentElement.children.length;
-    console.log(gridSize);
     for(let i=(gridSize-1); i >=0 ;i--){
         parentElement.removeChild(list[i]);
     }
 }
 
-MainFunction(parentElement);
+MainFunction(parentElement);//starting point
