@@ -236,7 +236,8 @@ body{
     }
 
     .select-color{
-        width: 35%;
+        width: 15%;
+        height: 55%;
         grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
         
     }
@@ -244,19 +245,19 @@ body{
 
     @keyframes fadeIn{
         from{
-            width: 10%;
+            height: 10%;
             opacity: 0;
             display: none;
         }
         55%{
-            width: 20%;
+            height: 20%;
             opacity: 0.6;
             display: grid;
         }
     
         65%{
             opacity: 1;
-            width: 30%;
+            height: 30%;
         }
     
         80%{
@@ -265,7 +266,7 @@ body{
     
         100%{
             opacity: 1;
-            width: 35%;
+            height: 75%;
     
         }
     }
